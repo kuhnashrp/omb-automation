@@ -3,7 +3,7 @@
 ## Tools that Assist in setting up and running OMB tests
 v1 of these tools are for use with the [redpanda driver of OMB](https://github.com/redpanda-data/openmessaging-benchmark/tree/main/driver-redpanda)
 
-###Setup OMB Infrastructure
+### Setup OMB Infrastructure
 ```
 # Per https://github.com/redpanda-data/openmessaging-benchmark/blob/main/driver-redpanda/README.md 
 brew install terraform ansible
@@ -15,7 +15,7 @@ mvn clean package
 ssh-keygen -f ~/.ssh/redpanda_aws # hit enter for all prompts
 cd driver-redpanda/deploy
 ```
-####Exec Terraform to provision OMB test infrastructure
+#### Exec Terraform to provision OMB test infrastructure
 ```
 cp terraform.tfvars.example terraform.tfvars
 terraform init
@@ -25,7 +25,7 @@ if [ "$(uname)" = "Darwin" ]; then
     export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES; 
 fi
 ```
-####Exec Ansible to configure the OMB provisioned nodes above.
+#### Exec Ansible to configure the OMB provisioned nodes above.
 ```
 if [ "$(uname)" = "Darwin" ]; then 
     brew install gnu-tar; 
@@ -34,7 +34,7 @@ ansible-galaxy install -r requirements.yaml
 ansible-playbook deploy.yaml
 ```
 
-###Setup BuildKite Agent
+### Setup BuildKite Agent
 
 ```
  ssh -i ~/.ssh/redpanda_aws ubuntu@$(terraform output --raw client_ssh_host)
