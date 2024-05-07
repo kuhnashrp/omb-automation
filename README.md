@@ -34,9 +34,16 @@ ansible-galaxy install -r requirements.yaml
 ansible-playbook deploy.yaml
 ```
 
-### Setup BuildKite Agent
+### Setup BuildKite Agent on Jumphost
 
 ```
- ssh -i ~/.ssh/redpanda_aws ubuntu@$(terraform output --raw client_ssh_host)
+# save where we are
+OMB_AUTO=${PWD}
+# cd to the git checkout location of openmessaging-benchmark
+cd openmessaging-benchmark/driver-redpanda/deploy
+${OMB_AUTO}/jumphost-prep.sh
  ```
 
+Navigating to Buildkite -> Agents should now display the hostname of the jumphost as one of the agents. 
+
+@TODO - there needs to be a queue created per agent, only for preliminary / single use at present. 

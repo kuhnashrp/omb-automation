@@ -25,6 +25,7 @@ ssh -i ~/.ssh/redpanda_aws ubuntu@${SSH_HOST} <<EOF
 # Install initial required packages
 sudo apt install \
   python-is-python3
+python3 -m pip install numpy jinja2 pygal
 
 # Install Buildkite Agent
 curl -fsSL https://keys.openpgp.org/vks/v1/by-fingerprint/32A37959C2FA5C3C99EFBC32A79206696452D198 | sudo gpg --dearmor -o /usr/share/keyrings/buildkite-agent-archive-keyring.gpg
