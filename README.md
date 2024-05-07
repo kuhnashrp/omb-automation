@@ -5,7 +5,9 @@ v1 of these tools are for use with the [redpanda driver of OMB](https://github.c
 
 ### Setup OMB Infrastructure
 ```
-# Per https://github.com/redpanda-data/openmessaging-benchmark/blob/main/driver-redpanda/README.md 
+git clone git@github.com:redpanda-data/openmessaging-benchmark.git
+cd openmessaging-benchmark/driver-redpanda/deploy
+# Per https://github.com/redpanda-data/openmessaging-benchmark/blob/main/driver-redpanda/README.md#requirements
 brew install terraform ansible
 ansible-galaxy role install geerlingguy.node_exporter prometheus.prometheus grafana.grafana
 git clone git@github.com:redpanda-data/openmessaging-benchmark.git 
@@ -17,6 +19,7 @@ cd driver-redpanda/deploy
 ```
 #### Exec Terraform to provision OMB test infrastructure
 ```
+# Per https://github.com/redpanda-data/openmessaging-benchmark/blob/main/driver-redpanda/README.md#setup 
 cp terraform.tfvars.example terraform.tfvars
 terraform init
 aws sts get-caller-identity || aws sso login
@@ -27,6 +30,7 @@ fi
 ```
 #### Exec Ansible to configure the OMB provisioned nodes above.
 ```
+https://github.com/redpanda-data/openmessaging-benchmark/blob/main/driver-redpanda/README.md#setup
 if [ "$(uname)" = "Darwin" ]; then 
     brew install gnu-tar; 
 fi # https://github.com/prometheus-community/ansible/issues/186
@@ -38,7 +42,7 @@ ansible-playbook deploy.yaml
 
 ```
 # save where we are
-OMB_AUTO=${PWD}
+OMB_AUTO=${PWD} # omb-automation directory
 # cd to the git checkout location of openmessaging-benchmark
 cd openmessaging-benchmark/driver-redpanda/deploy
 ${OMB_AUTO}/jumphost-prep.sh
